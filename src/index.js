@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const connectButton = document.getElementById('connectButton');
   const updateButton = document.getElementById('updateButton');
 
+
   connectButton.addEventListener('click', () => {
    
     socket.connect(); // Połącz z serwerem WebSocket
@@ -21,8 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateButton.addEventListener('click', () => {
     // Wysyłamy żądanie aktualizacji danych postaci
-    const characterId = 0; // Zastąp ID swoją własną wartością
+    const characterId = "1"; 
     const newData = {
+      _id: "1",
       level: 1110,
       experience: 500,
       health: 80,
@@ -31,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         vitality: 25,
       },
     };
-console.log(socket);
     socket.emit('updateCharacter', { characterId, newData });
   });
+
 
   // Nasłuchiwanie na zdarzenia zwrotne, np. "characterUpdated"
   socket.on('characterUpdated', (updatedCharacter) => {
