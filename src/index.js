@@ -25,13 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const characterId = "1"; 
     const newData = {
       _id: "1",
-      level: 1110,
-      experience: 500,
-      health: 80,
-      stats: {
-        agility: 15,
-        vitality: 25,
-      },
+      level: 2,
+      experience: 502,
+
     };
     socket.emit('updateCharacter', { characterId, newData });
   });
