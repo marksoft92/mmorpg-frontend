@@ -11,23 +11,28 @@ const socket = io(serverUrl);
 document.addEventListener('DOMContentLoaded', () => {
   const connectButton = document.getElementById('connectButton');
   const updateButton = document.getElementById('updateButton');
+  socket.connect(); // Połącz z serwerem WebSocket
+  console.log('Połączono z serwerem WebSocket');
 
-
-  connectButton.addEventListener('click', () => {
-   
-    socket.connect(); // Połącz z serwerem WebSocket
-    console.log('Połączono z serwerem WebSocket', socket.connect());
- 
-  });
 
   updateButton.addEventListener('click', () => {
     // Wysyłamy żądanie aktualizacji danych postaci
-    const characterId = "1"; 
+    const characterId = "2"; 
     const newData = {
-      _id: "1",
-      level: 2,
-      experience: 502,
+      // _id: "2",
+      level: 1,
+      experience: 0,
 
+      class: "Wizard",
+      name: "Dawid_test_nowy",
+      health: 100,
+      location: "Lorencia",
+      stats: {
+        agility: 20,
+        vitality: 20,
+        strength: 20,
+        energy: 20
+      },
     };
     socket.emit('updateCharacter', { characterId, newData });
   });
@@ -38,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Zaktualizowane dane postaci:', updatedCharacter);
   });
 
-  // Obsługa rozłączenia
-  socket.on('disconnect', () => {
-    console.log('Rozłączono z serwerem WebSocket');
-  });
+  // // Obsługa rozłączenia
+  // socket.on('disconnect', () => {
+  //   console.log('Rozłączono z serwerem WebSocket');
+  // });
 });
